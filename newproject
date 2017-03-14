@@ -1,0 +1,138 @@
+#!/bin/bash
+
+# I may consider adding immediate git repo to the project.
+
+function does_dir_exist {
+    # Checks to make sure that there does not exists
+    # a dir of the same name
+    if [ -d ./$1 ]; then
+        printf "\n\nProject already exists. Now exiting."
+        exit 1
+    fi
+
+}
+
+function make_bash_project {
+    project=$1
+    printf "Creating a new Bash project: %s \n" $project
+
+    # Make a directory
+
+    # Make a bash script containing with #!/bin/bash 
+
+    # Make script executable
+
+    # Make a README
+}
+
+function make_c_project {
+    project=$1
+    printf "Creating a new C project: %s \n" $project
+
+    # Make a directory
+    does_dir_exist $project
+    mkdir $project
+
+    # Make a C file with a template
+    cp ~/.bin/Documents/proj.c ./$project/$project.c
+
+    # Make a YCM file
+    cp ~/.bin/Documents/c_ycm/.ycm_extra_conf.py ./$project
+
+    # Make README
+    printf "%s C Project \n\n" $project >> ./$project/README.md
+
+    # Make a make file
+}
+
+function make_cpp_project {
+    project=$1
+    printf "Creating a new C++ project: %s \n" $project
+
+    # Make a directory
+
+    # Make a C file with a template
+
+    # Make a YCM file
+
+    # Make a README
+
+    # Make a make file
+}
+
+function make_latex_project {
+    project=$1
+    printf "Creating a new Latex project: %s \n" $project
+}
+
+function make_python_project {
+    project=$1
+    printf "Creating a new Python project: %s \n" $project
+
+    # Make a directory
+    does_dir_exist $project
+    mkdir $project
+    # Adds a executable python file to dir
+    cp ~/.bin/Documents/python_proj ./$project
+    # Make python README
+    printf "%s Python Project \n\n" $project >> ./$project/README.md
+
+}
+
+function make_git_repo {
+    project=$1
+    printf "Creating a git repo for: %s" $project
+}
+
+function usage {
+    project=$1
+    printf "This is where usage will go. \n"
+}
+
+options=":b:B:c:C:h:p:P:l:L:y:Y" 
+while getopts $options opt; do
+  case $opt in
+    b)
+      make_bash_project $OPTARG
+      ;;
+    B)
+      make_bash_project $OPTARG
+      make_git_repo $OPTARG
+      ;;
+    c)
+      make_c_project $OPTARG
+      ;;
+    C)
+      make_c_project $OPTARG
+      make_git_repo $OPTARG
+      ;;
+    p)
+      make_cpp_project $OPTARG
+      ;;
+    P)
+      make_cpp_project $OPTARG
+      make_git_repo $OPTARG
+      ;;
+    l)
+      make_latex_project $OPTARG
+      ;;
+    L)
+      make_latex_project $OPTARG
+      make_git_repo $OPTARG
+      ;;
+    h)
+      usage
+      ;;
+    y)
+      make_python_project $OPTARG
+      ;;
+    Y)
+      make_python_project $OPTARG
+      make_git_repo $OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG"
+      usage
+      ;;
+  esac
+done

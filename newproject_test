@@ -1,0 +1,38 @@
+#!/bin/bash
+
+function rm_test_arg {
+    printf "rm test arg"
+}
+
+function test_arg {
+    printf "Now testing all options for making a new project (including help).\n\n"
+
+    project="test"
+
+    printf "Testing Bash: \n\t"
+    newproject -b $project
+    newproject -B $project
+
+    printf "\n\nTesting C: \n\t"
+    newproject -c $project
+    newproject -C $project
+
+    printf "\n\nTesting C++: \n\t"
+    newproject -p $project
+    newproject -P $project
+
+    printf "\n\nTesting Latex: \n\t"
+    newproject -l $project
+    newproject -L $project
+    
+    printf "\n\nTesting Python: \n\t"
+    # newproject -y $project
+    # Should throw an error stating file already exits
+    # newproject -Y $project
+
+    printf "\n\nTesting Help: \n\t"
+    newproject -h $project
+}
+
+
+test_arg
