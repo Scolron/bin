@@ -3,7 +3,7 @@
 # I may consider adding immediate git repo to the project.
 
 function does_dir_exist {
-    # Checks to make sure that there does not exists
+    # Checks to make sure that there does not exist
     # a dir of the same name
     if [ -d ./$1 ]; then
         printf "\n\nProject already exists. Now exiting."
